@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://skyinhand.github.io">
   <title>Archives | 掌上天空博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一名大二的计算机专业学生, 平时随和任我, 喜欢的事情会做的非常认真, 在这里记录一些我感兴趣的技术性话题">
+  <meta name="description" content="这里是掌上天空, 一名大二的计算机专业学生, 对Go, PHP, Flutter, Python较为擅长, 平时会分享一些除此之外的内容">
 <meta property="og:type" content="website">
 <meta property="og:title" content="掌上天空博客">
 <meta property="og:url" content="https://skyinhand.github.io/archives/index.html">
 <meta property="og:site_name" content="掌上天空博客">
-<meta property="og:description" content="一名大二的计算机专业学生, 平时随和任我, 喜欢的事情会做的非常认真, 在这里记录一些我感兴趣的技术性话题">
+<meta property="og:description" content="这里是掌上天空, 一名大二的计算机专业学生, 对Go, PHP, Flutter, Python较为擅长, 平时会分享一些除此之外的内容">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="掌上天空">
 <meta name="twitter:card" content="summary">
@@ -46,6 +46,8 @@
         </script>
         
  
+  <link href="/assets/css/aos.css" rel="stylesheet">
+  <script src="/assets/js/aos.min.js"></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
@@ -54,7 +56,7 @@
     <div class="left-col" q-class="show:isShow">
       
 <div class="overlay" style="background: #1E90FF"></div>
-<div class="intrude-less">
+<div class="intrude-less" data-aos="fade-down">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			<img src="/assets/image/avatar.jpg" class="js-avatar">
@@ -62,6 +64,11 @@
 		<hgroup>
 		  <h1 class="header-author"><a href="/">掌上天空</a></h1>
 		</hgroup>
+		
+			<div style="text-align: center;">
+				<p id="hitokoto">:D 获取中...</p>
+				<script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
+			</div>
 		
 
 		<nav class="header-menu">
@@ -81,10 +88,6 @@
             
     			
     			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
-    			
-            
-    			
-    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">一言</a>
     			
             
 		</nav>
@@ -118,6 +121,8 @@
 			<hgroup>
 			  <h1 class="header-author js-header-author">掌上天空</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>你好, 世界!<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -220,6 +225,9 @@
         </div>
       </div>
       <footer id="footer">
+  <script>
+    AOS.init();
+  </script>
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
@@ -268,25 +276,17 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
       
     
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">一言</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
       
         
     </ul>
@@ -367,8 +367,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     	</section>
     
 
-    
-      <p id="js-aboutme" style="margin:0 20px 0 20px;">人生天地间，忽如远行客</P>
     
   </div>
   
