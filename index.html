@@ -76,7 +76,11 @@
 			
 				<li><a href="/">主页</a></li>
 	        
+				<li><a href="/tags/CTF">CTF</a></li>
+	        
 				<li><a href="/tags/%E5%9C%B0%E5%9B%BE%E5%B7%A5%E5%9D%8A/">地图工坊</a></li>
+	        
+				<li><a href="/tags/%E6%9D%82%E9%A1%B9">杂项</a></li>
 	        
 			</ul>
 		</nav>
@@ -130,6 +134,10 @@
 			
 				
 			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -145,12 +153,16 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E5%9C%B0%E5%9B%BE%E5%B7%A5%E5%9D%8A/">地图工坊</a></li>
+					<li style="width: 25%"><a href="/tags/CTF">CTF</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/%E5%9C%B0%E5%9B%BE%E5%B7%A5%E5%9D%8A/">地图工坊</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/%E6%9D%82%E9%A1%B9">杂项</a></li>
 		        
 				</ul>
 			</nav>
@@ -166,6 +178,172 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-CTF之SSTI模板注入漏洞" class="article article-type-post  article-index" itemscope itemprop="blogPost" data-aos="fade-right">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/post/b3e5dcd8.html">CTF之SSTI模板注入漏洞</a>
+    </h1>
+  
+
+        
+        <a href="/post/b3e5dcd8.html" class="archive-article-date">
+  	<time datetime="2021-05-04T09:22:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>模板引擎（这里特指用于Web开发的模板引擎）是为了使用户界面与业务数据（内容）分离而产生的，它可以生成特定格式的文档，用于网站的模板引擎就会生成一个标准的HTML文档。</p>
+</blockquote>
+<blockquote>
+<p>SSTI类似XSS攻击，利用模板引擎回显内容的特点，将输入的内容（一段代码）运行起来，可获得服务器的一些内部信息</p>
+</blockquote>
+<p>一个空白的 html 页面只有变量，访问这个页面时需要将这些变量转换成预期的内容，这时候就需要用到模板引擎。php（或者其他脚本语言）代码通过访问模板引擎，模板引擎通过正则匹配产生一个新的缓存的 html 页面，从而实现 php 和 html 代码的分离。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/post/b3e5dcd8.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Git命令记录" class="article article-type-post  article-index" itemscope itemprop="blogPost" data-aos="fade-right">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/post/64bff582.html">Git命令记录</a>
+    </h1>
+  
+
+        
+        <a href="/post/64bff582.html" class="archive-article-date">
+  	<time datetime="2021-05-04T06:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><ol>
+<li><p>查看分支：git branch</p>
+</li>
+<li><p>创建分支：git branch [分支名]</p>
+</li>
+<li><p>切换分支：git checkout [分支名]</p>
+<blockquote>
+<p> 测试分支名称：dev</p>
+<p>直接 git push， 不需要进行commit</p>
+</blockquote>
+</li>
+</ol></li></ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/post/64bff582.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Overwatch地图工坊的魔法方法-一" class="article article-type-post  article-index" itemscope itemprop="blogPost" data-aos="fade-right">
   <div class="article-inner">
@@ -330,7 +508,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂项</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">地图工坊</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
               </li>
             
             <div class="clearfix"></div>
