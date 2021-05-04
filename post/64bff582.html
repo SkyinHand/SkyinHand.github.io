@@ -229,9 +229,9 @@
 </ol>
 </li>
 <li><h2 id="版本回滚"><a href="#版本回滚" class="headerlink" title="版本回滚"></a>版本回滚</h2><p>目的：误删代码需要找回的时候，或者有一个函数在系统v1版本中封装，但是在v3版本中没有这个函数</p>
-<h3 id="查看日志（务必在每次提交的时候协商注释）-退出查看日志按q键："><a href="#查看日志（务必在每次提交的时候协商注释）-退出查看日志按q键：" class="headerlink" title="查看日志（务必在每次提交的时候协商注释）; 退出查看日志按q键："></a>查看日志（务必在每次提交的时候协商注释）; 退出查看日志按q键：</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git log <span class="comment"># 查看提交的历史记录</span></span><br><span class="line">git log -<span class="literal">-pretty</span>=oneline <span class="comment">#查看提交的历史（格式化）</span></span><br></pre></td></tr></table></figure>
+<h3 id="查看日志（务必在每次提交的时候协商注释）-退出查看日志按q键："><a href="#查看日志（务必在每次提交的时候协商注释）-退出查看日志按q键：" class="headerlink" title="查看日志（务必在每次提交的时候协商注释）; 退出查看日志按q键："></a>查看日志（务必在每次提交的时候协商注释）; 退出查看日志按q键：</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">git log <span class="comment"># 查看提交的历史记录</span></span><br><span class="line">git log -<span class="literal">-pretty</span>=oneline <span class="comment">#查看提交的历史（格式化）</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="回滚操作"><a href="#回滚操作" class="headerlink" title="回滚操作"></a>回滚操作</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git reset -<span class="literal">-hard</span> HEAD^ <span class="comment"># 回退到上一个版本</span></span><br><span class="line">git reset -<span class="literal">-hard</span> HEAD~<span class="number">3</span> <span class="comment"># 回退到前3次提交之前，以此类推，回退到n次提交之前</span></span><br><span class="line">git reset -<span class="literal">-hard</span> commit_id <span class="comment">#回退到指定版本</span></span><br></pre></td></tr></table></figure>
+<h3 id="回滚操作"><a href="#回滚操作" class="headerlink" title="回滚操作"></a>回滚操作</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">git reset -<span class="literal">-hard</span> HEAD^ <span class="comment"># 回退到上一个版本</span></span><br><span class="line">git reset -<span class="literal">-hard</span> HEAD~<span class="number">3</span> <span class="comment"># 回退到前3次提交之前，以此类推，回退到n次提交之前</span></span><br><span class="line">git reset -<span class="literal">-hard</span> commit_id <span class="comment">#回退到指定版本</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
 <li><p>创建临时分支</p>
@@ -497,15 +497,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂项</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">地图工坊</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
               </li>
             
             <div class="clearfix"></div>

