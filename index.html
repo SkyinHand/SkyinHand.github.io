@@ -76,7 +76,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/CTF">CTF</a></li>
+				<li><a href="/tags/%E9%80%86%E5%90%91">逆向</a></li>
 	        
 				<li><a href="/tags/%E5%9C%B0%E5%9B%BE%E5%B7%A5%E5%9D%8A/">地图工坊</a></li>
 	        
@@ -158,7 +158,7 @@
 				
 					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/CTF">CTF</a></li>
+					<li style="width: 25%"><a href="/tags/%E9%80%86%E5%90%91">逆向</a></li>
 		        
 					<li style="width: 25%"><a href="/tags/%E5%9C%B0%E5%9B%BE%E5%B7%A5%E5%9D%8A/">地图工坊</a></li>
 		        
@@ -178,6 +178,115 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-汇编语言学习记录（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost" data-aos="fade-right">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> title: 汇编语言学习记录（一）<br>date: 2021-05-06 14:32:48<br>tags: 逆向</p>
+<h1 id="CS和IP寄存器"><a href="#CS和IP寄存器" class="headerlink" title="CS和IP寄存器"></a>CS和IP寄存器</h1><blockquote>
+<p>CS和IP寄存器是8086CPU中最关键的两个寄存器，他们指示了CPU当前需要读取的地址。</p>
+</blockquote>
+<ul>
+<li><p>CS</p>
+<p>含义：<strong>代码段寄存器</strong></p>
+</li>
+<li><p>IP</p>
+<p>含义：<strong>指令指针寄存器</strong></p>
+</li>
+</ul>
+<p>在8086机器中，任何时候，设CS中的内容为M，IP中的内容为N，则8086CPU将从<strong>内存</strong>M×16+N单元开始，读取一条指令并执行。</p>
+<h1 id="EAX-EBX-ECX-EDX寄存器"><a href="#EAX-EBX-ECX-EDX寄存器" class="headerlink" title="EAX EBX ECX EDX寄存器"></a>EAX EBX ECX EDX寄存器</h1><ul>
+<li>初识寄存器</li>
+</ul>
+<p>IA-32架构中一共有4个32位寄存器，用于保存临时数据，它们分别是EAX、EBX、ECX和EDX。</p>
+<p>  这4个32位寄存器的通用寄存器名字前面都有一个“E”字母，含义是“Expand”扩展，这是由于在16位的时代，这4个通用寄存器的名字是AX、BX、CX和DX，到了32位后就在它们的名字前面加个“E”来区别是32位还是16位。</p>
+<p>  这4个32位的通用寄存器可以当作16位使用，也可以当作8位使用。当作8位使用时，就将AX折开为AH和AL，AH中的“H”代表“high”，意思是高位的意思，AL中的“L”代表“low”，意思是地位的意思。同理，BX、CX和DX可折开为BH、BL、CH、CL、DH、DL来使用。</p>
+<p><img src="/post/0/%E5%AF%84%E5%AD%98%E5%99%A8%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="寄存器示意图"></p>
+<p>一些寄存器是别的寄存器的一部分：例如，如果EAX保存了值12782345，这里是其他寄存器的值。 </p>
+<table>
+<thead>
+<tr>
+<th>EAX</th>
+<th>12</th>
+<th>78</th>
+<th>23</th>
+<th>45</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AX</td>
+<td>12</td>
+<td>78</td>
+<td><strong>23</strong></td>
+<td><strong>45</strong></td>
+</tr>
+<tr>
+<td>AH</td>
+<td>12</td>
+<td>78</td>
+<td><strong>23</strong></td>
+<td>45</td>
+</tr>
+<tr>
+<td>AL</td>
+<td>EA</td>
+<td>78</td>
+<td>23</td>
+<td><strong>45</strong></td>
+</tr>
+</tbody></table>
+<ul>
+<li>寄存器的用途<ol>
+<li>EAX寄存器：EAX称之为累加器，常用语算术运算，布尔操作，逻辑操作，返回函数结果</li>
+<li>EBX寄存器：EBX称为基址寄存器，常用于存档内存地址</li>
+<li>ECX寄存器：ECX寄存器又称之为计数寄存器，常用于存放循环语句的循环次数，字符串相关操作中也会常用</li>
+<li>EDX寄存器：称之为数据寄存器，常常和EAX一同使用</li>
+</ol>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/post/0.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-CTF之SSTI模板注入漏洞" class="article article-type-post  article-index" itemscope itemprop="blogPost" data-aos="fade-right">
   <div class="article-inner">
@@ -219,7 +328,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
         		</li>
       		
 		</ul>
@@ -506,10 +615,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
-              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂项</a>

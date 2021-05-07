@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://skyinhand.github.io/post/0.html</loc>
+    
+    <lastmod>2021-05-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://skyinhand.github.io/post/b3e5dcd8.html</loc>
     
-    <lastmod>2021-05-04</lastmod>
+    <lastmod>2021-05-06</lastmod>
     
   </url>
   
@@ -25,29 +32,22 @@
 
   <url>
     <loc>https://skyinhand.github.io/</loc>
-    <lastmod>2021-05-04</lastmod>
+    <lastmod>2021-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://skyinhand.github.io/tags/CTF/</loc>
-    <lastmod>2021-05-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://skyinhand.github.io/tags/%E6%9D%82%E9%A1%B9/</loc>
-    <lastmod>2021-05-04</lastmod>
+    <lastmod>2021-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://skyinhand.github.io/tags/%E5%9C%B0%E5%9B%BE%E5%B7%A5%E5%9D%8A/</loc>
-    <lastmod>2021-05-04</lastmod>
+    <lastmod>2021-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
